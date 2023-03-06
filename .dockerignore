@@ -2,3 +2,4 @@
 .env
 Pipfile*
 bootstrap.sh
+build_push.sh
