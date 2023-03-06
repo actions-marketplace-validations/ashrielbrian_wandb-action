@@ -1,4 +1,4 @@
-FROM python:3.7.4
+FROM python:3.9.16-slim-buster
 
 RUN pip install wandb tabulate pandas
 COPY wandb_get_runs.py /wandb_get_runs.py
