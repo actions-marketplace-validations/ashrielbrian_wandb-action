@@ -1,12 +1,13 @@
 #!/bin/bash
-docker build -t hamelsmu/wandb .
+docker build -t ashrielbrian/wandb_action -f prebuild.Dockerfile .
 
-INPUT_PROJECT_NAME="hamelsmu/test-wandb-action"
+INPUT_WANDB_API_KEY=
+INPUT_PROJECT_NAME=
 GITHUB_WORKSPACE="/data"
-GITHUB_SHA="testsha1234"
-INPUT_DISPLAY_METRICS="['acc', 'loss', 'val_acc', 'val_loss']"
-INPUT_DISPLAY_CONFIG_VARS="['secondary_sha']"
-INPUT_BASELINE_TAGS="['baseline']"
+GITHUB_SHA=
+INPUT_DISPLAY_METRICS="['metrics/precision', 'metrics/mAP_0.5:0.95', 'metrics/mAP_0.5', 'metrics/recall']"
+INPUT_DISPLAY_CONFIG_VARS="[]"
+INPUT_BASELINE_TAGS="['baseline', 'reference']"
 INPUT_DEBUG="y"
 
 
@@ -17,8 +18,8 @@ docker run \
 -e INPUT_BASELINE_TAGS="$INPUT_BASELINE_TAGS" \
 -e INPUT_DISPLAY_METRICS="$INPUT_DISPLAY_METRICS" \
 -e INPUT_DISPLAY_CONFIG_VARS="$INPUT_DISPLAY_CONFIG_VARS" \
--e WANDB_API_KEY=$INPUT_WANDB_API_KEY \
+-e INPUT_WANDB_API_KEY=$INPUT_WANDB_API_KEY \
 -e GITHUB_WORKSPACE=$GITHUB_WORKSPACE \
 -e INPUT_DEBUG=$INPUT_DEBUG \
 -v ${PWD}:/data/ \
-hamelsmu/wandb
+ashrielbrian/wandb_action
