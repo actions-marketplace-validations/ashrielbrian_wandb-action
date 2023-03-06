@@ -1,2 +1,2 @@
-FROM hamelsmu/wandb-action
+FROM ashrielbrian/wandb-action
 ENTRYPOINT ["python",  "/wandb_get_runs.py"]
