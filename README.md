@@ -1,3 +1,32 @@
+This is a forked repository of [machine-learning-apps](https://github.com/machine-learning-apps/wandb-action). I've upgraded the image to Python 3.9 slim-buster. I discovered issues with the `hamelsmu/wandb-action` docker image where I got the following error:
+
+```
+    Traceback (most recent call last):
+    File "/wandb_get_runs.py", line 101, in <module>
+        runs = list(runs)
+    File "/usr/local/lib/python3.7/site-packages/wandb/apis/public.py", line 367, in __len__
+        self._load_page()
+    File "/usr/local/lib/python3.7/site-packages/wandb/apis/public.py", line 397, in _load_page
+        self.QUERY, variable_values=self.variables)
+    File "/usr/local/lib/python3.7/site-packages/wandb/retry.py", line 130, in wrapped_fn
+        return retrier(*args, **kargs)
+    File "/usr/local/lib/python3.7/site-packages/wandb/retry.py", line 95, in __call__
+        result = self._call_fn(*args, **kwargs)
+    File "/usr/local/lib/python3.7/site-packages/wandb/apis/public.py", line 91, in execute
+        return self._client.execute(*args, **kwargs)
+    File "/usr/local/lib/python3.7/site-packages/gql/client.py", line 52, in execute
+        result = self._get_result(document, *args, **kwargs)
+    File "/usr/local/lib/python3.7/site-packages/gql/client.py", line 60, in _get_result
+        return self.transport.execute(document, *args, **kwargs)
+    File "/usr/local/lib/python3.7/site-packages/gql/transport/requests.py", line 39, in execute
+        request.raise_for_status()
+    File "/usr/local/lib/python3.7/site-packages/requests/models.py", line 941, in raise_for_status
+        raise HTTPError(http_error_msg, response=self)
+    requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api.wandb.ai/graphql
+```
+
+I managed to "fix" it by building from source, instead of pulling `hamelsmu/wandb-action`. You can use this (tested) version by pulling from `ashrielbrian/wandb-action`.
+
 ![Actions Status](https://github.com/machine-learning-apps/wandb-action/workflows/Tests/badge.svg)
 
 
